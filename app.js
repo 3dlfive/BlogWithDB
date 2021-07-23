@@ -26,8 +26,9 @@ mongoose.connect("mongodb://localhost:27017/blogDB", {useNewUrlParser: true,useU
 
 const postSchema = {
  title: String,
- content: String
-
+ content: String,
+ creat_on: Date,
+ last_modify_time: Date
 };
 
 const Post = mongoose.model("Post", postSchema);
@@ -64,8 +65,8 @@ app.get("/compose", function(req, res){
 app.post("/compose", function(req, res){
   const post = new Post ({
     title: req.body.postTitle,
-    content: req.body.postBody
-
+    content: req.body.postBody,
+    creat_on: new Date("<YYYY-mm-ddTHH:MM>")
   });
 
   post.save((err)=>{if (!err){res.redirect("/");}});
