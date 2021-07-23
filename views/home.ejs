@@ -1,29 +1,11 @@
 
 <%- include("partials/header"); -%>
+<img class="jimg" src="/imgs/j.jpg" alt="journalist picture">
     <h1>Home</h1>
+
     <p> <%= startingContent %> </p>
 
 
-  <%  posts.reverse().forEach(function(post){ %>
-
-    <h1><a href="/posts/<%=post._id%>"><%=post.title%></a></h1>
-
-    <% if (post.creat_on) { %>
-    <p>Date of creation: <%=post.creat_on.toDateString()%></p>
-    <% } %>
-    <% if (typeof post.body == 'undefined' ) { %>
-<p> <%=post.content.substring(0, 200) + " ..."%>
-  <a href="/posts/<%=post._id%>">Read More</a>
-</p>
-
-<% } else { %>
-    <p>
-    <%=post.content.substring(0, 100) + " ..."%>
-    <a href="/posts/<%=post.title%>">Read More</a>
-    </p>
-<% } %>
-
-    <% }) %>
 
 
 <%- include("partials/footer"); -%>

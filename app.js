@@ -33,7 +33,13 @@ const postSchema = {
 
 const Post = mongoose.model("Post", postSchema);
 
-
+const contSchema = {
+  email: String,
+  title: String,
+  content: String,
+  creat_on: Date
+};
+const Cont = mongoose.model("Cont", contSchema);
 
 
 app.get("/", function(req, res){
@@ -43,13 +49,19 @@ app.get("/", function(req, res){
 
      startingContent: homeStartingContent,
 
-     posts: posts
+     //posts: posts
 
      });
 
  });
 });
-
+app.get("/allposts",(req,res)=>{
+  Post.find({},(err,posts)=>{
+    res.render("allposts", {
+      posts: posts
+    })
+  })
+});
 app.get("/about", function(req, res){
   res.render("about", {aboutContent: aboutContent});
 });
@@ -66,41 +78,28 @@ app.post("/compose", function(req, res){
   const post = new Post ({
     title: req.body.postTitle,
     content: req.body.postBody,
-    creat_on: new Date("<YYYY-mm-ddTHH:MM>")
+    creat_on: new Date()
   });
-
-  post.save((err)=>{if (!err){res.redirect("/");}});
-
-
-
+  post.save((err)=>{if (!err){res.redirect("/allposts");}});
 });
 
-app.get("/posts/:postId", function(req, res){
-  // const requestedTitle = _.lowerCase(req.params.postName);
-  // posts.forEach(function(post){
-  //   const storedTitle = _.lowerCase(post.title);
-  //
-  //   if (storedTitle === requestedTitle) {
-  //     res.render("post", {
-  //       title: post.title,
-  //       content: post.content
-  //     });
-  //   }
-  // });
-  const requestedPostId = req.params.postId;
-  Post.findOne({_id: requestedPostId}, function(err, post){
-
-     res.render("post", {
-
-       title: post.title,
-
-       content: post.content
-
-     });
-
-   });
+app.post("/contact", function(req, res){
+  const cont = new Cont ({
+    email: req.body.conEmail,
+    title: req.body.conTitle,
+    content: req.body.conBody,
+    creat_on: new Date()
+  })
+  cont.save((err)=>{if (!err){
+  res.render("contsuc");
+}});
 
 });
+app.get("/contsuc",(req,res)=>{
+  res.render("contsuc");
+})
+
+
 
 app.listen(3000, function() {
   console.log("Server started on port 3000");

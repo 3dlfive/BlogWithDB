@@ -2,7 +2,13 @@ html {
   min-height: 100%;
   position: relative;
 }
-
+hr {
+  border-style: none;
+  border-top-style: dotted;
+  border-color:#34495e;
+  border-width: 3px;
+  width: 7%;
+}
 .container-fluid {
     padding-top: 70px;
     padding-bottom: 70px;
@@ -19,7 +25,13 @@ html {
 .navbar-nav  li a:hover {
     color: #1abc9c !important;
 }
-
+.jimg {
+  border-radius: 7px;
+  width: 35%;
+  display: block;
+    margin-left: auto;
+    margin-right: auto
+}
 .footer-padding {
 	padding-bottom: 60px;
 }

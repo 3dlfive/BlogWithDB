@@ -1,0 +1,27 @@
+
+<%- include("partials/header"); -%>
+
+  <%  posts.reverse().forEach(function(post){ %>
+
+    <h1><a href="/posts/<%=post._id%>"><%=post.title%></a></h1>
+
+    <% if (post.creat_on) { %>
+    <p>Date of creation: <b><%=post.creat_on.toDateString()%></b></p>
+    <% } %>
+    <% if (typeof post.body == 'undefined' ) { %>
+<p> <%=post.content.substring(0, 300) + " ..."%>
+  </p>
+  <a class="read-More" href="/posts/<%=post._id%>">Read More</a>
+
+
+<% } else { %>
+    <p>
+    <%=post.content.substring(0, 100) + " ..."%>
+    <a href="/posts/<%=post.title%>">Read More</a>
+    </p>
+<% } %>
+<hr>
+    <% }) %>
+
+
+<%- include("partials/footer"); -%>
