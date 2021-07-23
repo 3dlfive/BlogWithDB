@@ -22,10 +22,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
 //Creating mongo connection
-mongoose.connect("mongodb://localhost:27017/blogDB", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}, );
+mongoose.connect("mongodb+srv://admin-denystry:pswd@cluster0.hoh1u.mongodb.net/BlogDB", {useNewUrlParser: true,useUnifiedTopology: true});
 
 
 const postSchema = {
