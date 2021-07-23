@@ -22,7 +22,11 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
 //Creating mongo connection
-mongoose.connect("mongodb://localhost:27017/blogDB", {useNewUrlParser: true,useUnifiedTopology: true});
+mongoose.connect("mongodb://localhost:27017/blogDB", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}, );
+
 
 const postSchema = {
  title: String,
@@ -62,6 +66,20 @@ app.get("/allposts",(req,res)=>{
     })
   })
 });
+app.get("/posts/:postId", function(req, res){
+
+const requestedPostId = req.params.postId;
+
+  Post.findOne({_id: requestedPostId}, function(err, post){
+    res.render("post", {
+      title: post.title,
+      content: post.content,
+      creat_on: post.creat_on.toDateString()
+    });
+  });
+
+});
+
 app.get("/about", function(req, res){
   res.render("about", {aboutContent: aboutContent});
 });
