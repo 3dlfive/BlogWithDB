@@ -32,9 +32,22 @@ html {
 	height: 60px;
 	background-color: #388697;
 }
-
+.container p {
+  text-align:justify;
+}
+.container a {
+  color:#388697;
+  text-decoration: none;
+}
 .footer p {
 	margin-top: 25px;
 	font-size: 12px;
   color: #fff;
+}
+.composeBordered {
+  border-style: dotted;
+
+}
+.composeBordered:hover {
+  border-color: #1abc9c ;
 }
