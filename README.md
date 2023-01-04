@@ -1,3 +1,3 @@
 # BlogWithDB Project from Udemy Bootcamp
  Blog that connected to local DB.
-link on heroku: https://afternoon-garden-30469.herokuapp.com/
+link on heroku: https://jagged-silk-behavior.glitch.me/
